@@ -1,0 +1,38 @@
+{% extends "base/base.html"%}
+
+{%load crispy_forms_tags %}
+
+{% block title %}Listar Continentes{% endblock title %}
+
+{% block content %}
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Id Habitat</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Clima</th>
+			<th scope="col">Vegetacion</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for habitat in object_list %}
+		<tr class="table-light">
+			<th class="row">{{habitat.id_hab}}</th>
+			<td>{{habitat.nombre}}</td>
+			<td>{{habitat.clima}}</td>
+			<td>{{habitat.vegetacion}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'zoo:habitat_editar' habitat.id_hab %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'zoo:habitat_eliminar' habitat.id_hab %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+			<h1>No hay registros de Habitat</h1>
+			{% endif %}
+	</tbody>
+</table>
+<a class="btn btn-success" href="{% url 'zoo:habitat_nuevo'%}">Agregar</a>
+			{% endblock content %}

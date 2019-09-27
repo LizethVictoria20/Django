@@ -1,0 +1,15 @@
+{% extends "base/base.html"%}
+{%load crispy_forms_tags %}
+
+{% block title %}Continente Eliminar{% endblock title %}
+
+
+{% block content %} 
+    <form method = 'post'> {% csrf_token %}
+        <h3>Desea eliminar el registro de {{object.nombre}}</h3>
+
+    <button type = 'submit' class='btn btn-danger'>Eliminar</button>
+    <a class='btn btn-success' href="{% url 'zoo:continente_listar'%}">Cancelar</a>
+
+    </form>
+{% endblock content %}

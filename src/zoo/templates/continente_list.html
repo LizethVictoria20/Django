@@ -1,0 +1,35 @@
+{% extends "base/base.html"%}
+
+{%load crispy_forms_tags %}
+
+{% block title %}Listar Continentes{% endblock title %}
+
+{% block content %}
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for continente in object_list %}
+		<tr class="table-light">
+			<th class="row">{{continente.id}}</th>
+			<td>{{continente.nombre}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'zoo:continente_editar' continente.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'zoo:continente_eliminar' continente.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+			<h1>No hay registros de Continentes</h1>
+			{% endif %}
+	</tbody>
+</table>
+<a class="btn btn-success" href="{% url 'zoo:continente_nuevo'%}">Agregar</a>
+			{% endblock content %}
